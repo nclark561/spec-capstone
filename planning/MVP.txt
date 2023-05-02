@@ -1,0 +1,14 @@
+FOUNDATIONS CAPSTONE PLAN: Author
+
+This app will be designed to be an organization tool for authors that are planning/brainstorming
+ideas for a book they plan to write. They will be able to store, edit, and delete info about
+the book such as a book title, summary of plot, setting, and character list (including name, 
+role, and short description of character).
+
+MVP Features:
+- User will be able to create account
+- User will be able to login to account
+- User will be able to log out of account
+- User will be able to log new book entries into their list
+- User will be able to view and edit their list of books and the attributes of their books
+- User will be able to remove books from the list
