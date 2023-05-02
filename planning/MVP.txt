@@ -1,4 +1,4 @@
-FOUNDATIONS CAPSTONE PLAN: Author
+SPECS CAPSTONE PLAN: Narrative Nexus
 
 This app will be designed to be an organization tool for authors that are planning/brainstorming
 ideas for a book they plan to write. They will be able to store, edit, and delete info about
