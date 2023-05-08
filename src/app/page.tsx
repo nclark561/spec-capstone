@@ -1,18 +1,21 @@
-import Image from 'next/image'
 import { Inter } from 'next/font/google'
 import axios from 'axios';
+import type { Metadata } from 'next';
+import Header from './components/Header';
 
+export const metadata: Metadata = {
+  title: "Home",
+  description: "Next app designed and optimized for brainstorming and mapping out plans for your books.",
+};
 
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
-  axios
-    .post("./api/sync/route.ts")
-    .then((res) => console.log(res))
-    .catch((err) => console.error(err));
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
+    <main>
+      <Header page='home'/>
+      <h1>home page</h1>
     </main>
   )
 }
