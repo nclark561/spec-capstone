@@ -1,16 +1,14 @@
-import { GetServerSideProps, GetServerSidePropsContext } from 'next'
-import { useRouter } from 'next/router'
+type Params = {
+    params: {
+        id: string
+    }
+}
 
-//@ts-ignore
-function ProfileId({ param }) {
+export default function ProfileId({ params: { id }}: Params) {
     return (
-        <h1>{param}</h1>
+        <>
+        <h1>this is a dynamic route</h1>
+        <h1>{id}</h1>
+        </>
     )
 }
-
-export async function getServerSideProps(context: GetServerSidePropsContext) {
-    const { param } = context.query
-    return { props: { param }}
-}
-
-export default ProfileId
