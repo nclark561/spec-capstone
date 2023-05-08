@@ -5,7 +5,7 @@ import Header from './components/Header';
 
 export const metadata: Metadata = {
   title: "Home",
-  description: "Next app designed and optimized for brainstorming and mapping out plans for your books.",
+  description: "Next app designed and optimized for brainstorming and mapping out plans for your books."
 };
 
 const inter = Inter({ subsets: ['latin'] })
