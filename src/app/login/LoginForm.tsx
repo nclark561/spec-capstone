@@ -13,10 +13,11 @@ export default function LoginForm() {
       .then((res) => {
         console.log(res.data)
       })
-      .catch(err => console.log(err))
+      .catch(err => console.error(err))
   }
 
-  const handleClick = () => {
+  const handleClick = (evt: React.SyntheticEvent) => {
+    evt.preventDefault()
     setRegister(prev => !prev)
   }
 
