@@ -1,12 +1,19 @@
 "use client";
 import { useState } from "react";
 import styles from './LoginForm.module.css'
+import axios from "axios";
 
 export default function LoginForm() {
   const [register, setRegister] = useState(false);
 
   const handleSubmit = (evt: React.SyntheticEvent) => {
     evt.preventDefault()
+
+    axios.post(`/api/${register ? 'register' : 'login'}`)
+      .then((res) => {
+        console.log(res.data)
+      })
+      .catch(err => console.log(err))
   }
 
   const handleClick = () => {
