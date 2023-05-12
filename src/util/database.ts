@@ -1,9 +1,10 @@
+import * as pg from 'pg';
 import { Sequelize } from "sequelize";
 
 const connectionString = process.env.CONNECTION_STRING as string
 
 const sequelize = new Sequelize(connectionString,  {
-    dialect: 'postgres',
+    dialectModule: pg,
     dialectOptions: {
         ssl: {
             rejectUnauthorized: false
