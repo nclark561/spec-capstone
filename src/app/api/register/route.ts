@@ -1,10 +1,11 @@
-import User from "@/util/models/user";
-import sequelize from "@/util/database";
+import { PrismaClient } from "@prisma/client";
 import { NextRequest, NextResponse } from "next/server";
 //@ts-ignore
 import * as bcrypt from "bcryptjs";
 //@ts-ignore
 import * as jwt from "jsonwebtoken";
+
+const prisma = new PrismaClient();
 
 export async function POST(request: NextRequest) {
   const { SECRET } = process.env;
@@ -15,8 +16,11 @@ export async function POST(request: NextRequest) {
 
   try {
     //@ts-ignore
-    const { username, password } = request.body;
-    const foundUser = await User.findOne({ where: { username: username } });
+    const { username, password }: { username: string; password: string } =
+      request.body;
+    const foundUser = await prisma.user.findFirst({
+      where: { username: username },
+    });
     if (foundUser) {
       return NextResponse.json(
         {
@@ -29,14 +33,13 @@ export async function POST(request: NextRequest) {
     } else {
       const salt = bcrypt.genSaltSync(10);
       const hash = bcrypt.hashSync(password, salt);
-      const newUser = await User.create({
-        username: username,
-        hashedPass: hash,
+      const newUser: any = await prisma.user.create({
+        data: {
+          username: username,
+          hashedPass: hash,
+        },
       });
-      const token = createToken(
-        newUser.dataValues.username,
-        newUser.dataValues.id
-      );
+      const token = createToken(newUser.username, newUser.id);
       const exp = Date.now() + 1000 * 60 * 60 * 48;
       return NextResponse.json(
         {
@@ -51,10 +54,13 @@ export async function POST(request: NextRequest) {
       );
     }
   } catch (err) {
-    return NextResponse.json({
-      message: err
-    }, {
-      status: 400
-    })
+    return NextResponse.json(
+      {
+        message: err,
+      },
+      {
+        status: 400,
+      }
+    );
   }
 }
