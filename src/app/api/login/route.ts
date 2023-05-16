@@ -1,4 +1,3 @@
-import User from "@/util/models/user";
 import { NextResponse } from "next/server";
 //@ts-ignore
 import * as bcrypt from "bcryptjs";

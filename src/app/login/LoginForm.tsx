@@ -13,6 +13,7 @@ export default function LoginForm() {
   const handleSubmit = (evt: React.SyntheticEvent) => {
     evt.preventDefault();
     let body = { username, password };
+    console.log(body)
 
     axios
       .post(`/api/${register ? "register" : "login"}`, body)
