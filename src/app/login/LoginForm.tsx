@@ -3,12 +3,14 @@ import { useState } from "react";
 import styles from "./LoginForm.module.css";
 import axios from "axios";
 import { useAuthContext } from "../context/store";
+import { useRouter } from "next/navigation";
 
 export default function LoginForm() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [register, setRegister] = useState(false);
   const authCtx = useAuthContext();
+  const router = useRouter()
 
   const handleSubmit = (evt: React.SyntheticEvent) => {
     evt.preventDefault();
@@ -20,6 +22,7 @@ export default function LoginForm() {
       .then(res => {
         //@ts-ignore
         authCtx.login(res.data.token, res.data.exp, res.data.id)
+        router.push(`/user/${res.data.id}`)
       })
       .catch(err => {
         console.error(err)
