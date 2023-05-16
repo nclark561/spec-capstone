@@ -8,23 +8,27 @@ import * as jwt from "jsonwebtoken";
 const prisma = new PrismaClient();
 
 export async function POST(request: NextRequest) {
-  const res = await request.json()
-  console.log(res)
+  const res = await request.json();
   const { SECRET } = process.env;
 
   const createToken = (username: string, id: number) => {
     return jwt.sign({ username, id }, SECRET, { expiresIn: "2 days" });
   };
-  console.log('i still work 1.5')
   try {
     //@ts-ignore
-    const { username, password }: { username: string; password: string } =
-      res;
-    const foundUser = await prisma.user.findFirst({
-      where: { username: username },
-    });
-    await prisma.$disconnect()
-    console.log('i still work 2')
+    const { username, password }: { username: string; password: string } = res;
+    console.log(username, password);
+    let foundUser;
+    try {
+      foundUser = await prisma.user.findFirst({
+        where: { username: username },
+      });
+      await prisma.$disconnect();
+    } catch (err) {
+      console.error(err);
+      await prisma.$disconnect();
+      process.exit(1);
+    }
     if (foundUser) {
       return NextResponse.json(
         {
@@ -35,27 +39,25 @@ export async function POST(request: NextRequest) {
         }
       );
     } else {
-      console.log('i still work 3')
       const salt = bcrypt.genSaltSync(10);
       const hash = bcrypt.hashSync(password, salt);
       const newUser: any = await prisma.user.create({
         data: {
           username: username,
           hashedPass: hash,
-          createdAt: new Date(),
-          updatedAt: new Date(),
         },
       });
-      await prisma.$disconnect()
+      await prisma.$disconnect();
 
-      console.log(newUser)
-      
+      console.log(newUser);
+
       const token = createToken(newUser.username, newUser.id);
       const exp = Date.now() + 1000 * 60 * 60 * 48;
+
       return NextResponse.json(
         {
-          username: newUser.dataValues.username,
-          id: newUser.dataValues.id,
+          username: newUser.username,
+          id: newUser.id,
           token,
           exp,
         },
@@ -68,7 +70,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json(
       {
         message: err,
-        info: 'hello'
+        info: "hello",
       },
       {
         status: 400,

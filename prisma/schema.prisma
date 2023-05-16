@@ -11,8 +11,7 @@ model Book {
   id         Int          @id @default(autoincrement())
   title      String?      @db.VarChar(255)
   summary    String?
-  createdAt  DateTime     @db.Timestamptz(6)
-  updatedAt  DateTime     @db.Timestamptz(6)
+  setting    String?
   userId     Int?
   users      User?       @relation(fields: [userId], references: [id])
   chapters   Chapter[]
@@ -24,8 +23,6 @@ model Chapter {
   num       Int?
   name      String?  @db.VarChar(255)
   outline   String?
-  createdAt DateTime @db.Timestamptz(6)
-  updatedAt DateTime @db.Timestamptz(6)
   bookId    Int?
   books     Book?   @relation(fields: [bookId], references: [id])
 }
@@ -35,8 +32,6 @@ model Character {
   name        String?  @db.VarChar(255)
   role        String?  @db.VarChar(255)
   description String?
-  createdAt   DateTime @db.Timestamptz(6)
-  updatedAt   DateTime @db.Timestamptz(6)
   bookId      Int?
   books       Book?   @relation(fields: [bookId], references: [id])
 }
@@ -45,7 +40,5 @@ model User {
   id         Int      @id @default(autoincrement())
   username   String?  @db.VarChar(255)
   hashedPass String?  @db.VarChar(255)
-  createdAt  DateTime @db.Timestamptz(6)
-  updatedAt  DateTime @db.Timestamptz(6)
   books      Book[]
 }

@@ -23,7 +23,7 @@ export default function LoginForm() {
       })
       .catch(err => {
         console.error(err)
-        alert(err.response.data)
+        alert(err.message)
       });
   };
 
