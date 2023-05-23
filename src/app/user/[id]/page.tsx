@@ -1,5 +1,6 @@
 import UserHeader from "@/app/components/UserHeader"
 import BookList from "./BookList"
+import BookForm from "./BookForm"
 
 export default function page({ params: { id } }: Params) {
 
@@ -11,7 +12,9 @@ export default function page({ params: { id } }: Params) {
           <section className="flex flex-col">
             <BookList/>
           </section>
-          <section></section>
+          <section>
+            <BookForm/>
+          </section>
         </div>
     </main>
   )
