@@ -70,7 +70,7 @@ export const AuthContextProvider = ({ children }) => {
 
     localStorage.setItem("token", tkn);
     localStorage.setItem("userId", useId);
-    localStorage.setItem("expirationTime", expTime);
+    localStorage.setItem("exp", expTime);
 
     const remainingTime = calculateRemainingTime(expTime)
 

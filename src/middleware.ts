@@ -35,5 +35,5 @@ export function middleware(request: Request) {
 }
 
 export const config = {
-    matcher: '/api/book'
+    matcher: '/api/hi'
 }

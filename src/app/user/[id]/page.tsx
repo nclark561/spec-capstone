@@ -1,19 +1,18 @@
-'use client'
-import { useAuthContext } from "@/app/context/store"
-import { useRouter } from "next/navigation"
+import UserHeader from "@/app/components/UserHeader"
+import BookList from "./BookList"
 
 export default function page({ params: { id } }: Params) {
-    const authCtx = useAuthContext()
-    const router = useRouter()
 
-    const handleClick = () => {
-        authCtx.logout()
-        router.push('/')
-    }
   return (
-    <>
-        <div>userId: {id}</div>
-        <button onClick={handleClick}>logout</button>
-    </>
+    
+    <main>
+        <UserHeader />
+        <div className="flex">
+          <section className="flex flex-col">
+            <BookList/>
+          </section>
+          <section></section>
+        </div>
+    </main>
   )
 }
