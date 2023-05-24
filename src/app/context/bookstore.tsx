@@ -4,16 +4,22 @@ import { createContext, useContext, useState } from "react"
 const BookContext = createContext({
     bookList: [],
     //@ts-ignore
-    setBookList: () => {}
+    setBookList: () => {},
+    currBook: {},
+    //@ts-ignore
+    setCurrBook: () => {}
 })
 
 //@ts-ignore
 export const BookContextProvider = ({ children }) => {
-    const [bookList, setBookList] = useState()
+    const [bookList, setBookList] = useState([])
+    const [currBook, setCurrBook] = useState('')
 
     const contextValue = {
         bookList,
-        setBookList
+        setBookList,
+        currBook,
+        setCurrBook,
     }
 
     return (

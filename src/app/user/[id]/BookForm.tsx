@@ -2,13 +2,14 @@
 import { useState } from "react";
 import { useBookContext } from "@/app/context/bookstore";
 import axios from "axios";
+import BookDisplay from "./BookDisplay";
 
 const BookForm = () => {
   const userId = localStorage.getItem("userId");
   const [title, setTitle] = useState("");
   const [setting, setSetting] = useState("");
   const [summary, setSummary] = useState("");
-  const bookCtx = useBookContext()
+  const bookCtx = useBookContext();
 
   const handleSubmit = (evt: React.SyntheticEvent) => {
     evt.preventDefault();
@@ -26,7 +27,9 @@ const BookForm = () => {
     setSummary("");
   };
 
-  return (
+  return bookCtx.currBook ? (
+    <BookDisplay />
+  ) : (
     <form onSubmit={handleSubmit} className="flex flex-col">
       <input
         name="title"

@@ -13,7 +13,7 @@ export default function page({ params: { id } }: Params) {
             <BookList/>
           </section>
           <section>
-            <BookForm/>
+            <BookForm/> 
           </section>
         </div>
     </main>

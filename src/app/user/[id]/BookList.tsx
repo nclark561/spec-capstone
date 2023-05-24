@@ -7,7 +7,16 @@ const BookList = () => {
   const [book, setBook] = useState([]);
   const userId = localStorage.getItem('userId')
   const bookCtx = useBookContext()
-  console.log(userId)
+
+  const handleClick = (evt: React.SyntheticEvent) => {
+    //@ts-ignore
+    bookCtx.setCurrBook(evt.target.value)
+  }
+
+  const handleAdd = () => {
+    //@ts-ignore
+    bookCtx.setCurrBook(null)
+  }
 
   useEffect(() => {
     axios
@@ -22,8 +31,9 @@ const BookList = () => {
     <>
       {
         //@ts-ignore
-        book.map((b) => <button key={b.id}>{b.title}</button>)
+        book.map((b) => <button key={b.id} value={b.id} onClick={handleClick}>{b.title}</button>)
       }
+      <button onClick={handleAdd}>add book</button>
     </>
   );
 };
