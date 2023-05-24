@@ -40,7 +40,7 @@ export async function POST(request: NextRequest) {
         title,
         summary,
         setting,
-        userId,
+        userId: +userId
       },
     });
     await prisma.$disconnect();

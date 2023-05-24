@@ -1,22 +1,29 @@
 "use client";
 import { useState } from "react";
+import { useBookContext } from "@/app/context/bookstore";
+import axios from "axios";
 
 const BookForm = () => {
   const userId = localStorage.getItem("userId");
   const [title, setTitle] = useState("");
   const [setting, setSetting] = useState("");
   const [summary, setSummary] = useState("");
+  const bookCtx = useBookContext()
 
   const handleSubmit = (evt: React.SyntheticEvent) => {
     evt.preventDefault();
-    console.log("title: ", title);
-    console.log("setting: ", setting);
-    console.log("summary: ", summary);
-    console.log("userId: ", userId);
 
-    setTitle('')
-    setSetting('')
-    setSummary('')
+    axios
+      .post("/api/book", { userId, title, setting, summary })
+      .then((res) => {
+        //@ts-ignore
+        bookCtx.setBookList(res.data);
+      })
+      .catch((err) => console.error(err));
+
+    setTitle("");
+    setSetting("");
+    setSummary("");
   };
 
   return (

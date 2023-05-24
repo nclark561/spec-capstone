@@ -1,10 +1,12 @@
 "use client";
 import { useEffect, useState } from "react";
+import { useBookContext } from "@/app/context/bookstore";
 import axios from "axios";
 
 const BookList = () => {
   const [book, setBook] = useState([]);
   const userId = localStorage.getItem('userId')
+  const bookCtx = useBookContext()
   console.log(userId)
 
   useEffect(() => {
@@ -15,7 +17,7 @@ const BookList = () => {
         setBook(res.data.userBook);
       })
       .catch((err) => console.error(err));
-  }, []);
+  }, [bookCtx.bookList]);
   return (
     <>
       {
