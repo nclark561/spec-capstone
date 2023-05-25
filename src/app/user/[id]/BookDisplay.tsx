@@ -17,10 +17,21 @@ const BookDisplay = () => {
   }, [bookCtx.currBook]);
   return (
     <>
-      {/*@ts-ignore */}
-      <div>{dispBook?.userBook.title}</div>
-      <div></div>
-      <div></div>
+      <div>
+        {/*@ts-ignore */}
+        <div>{dispBook?.userBook.title}</div>
+        <button>edit</button>
+      </div>
+      <div>
+        {/*@ts-ignore */}
+        <div>{dispBook?.userBook.setting}</div>
+        <button>edit</button>
+      </div>
+      <div>
+        {/*@ts-ignore */}
+        <div>{dispBook?.userBook.summary}</div>
+        <button>edit</button>
+      </div>
     </>
   );
 };
