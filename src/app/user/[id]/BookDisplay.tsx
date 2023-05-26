@@ -2,6 +2,7 @@
 import { useBookContext } from "@/app/context/bookstore";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import CharacterDisplay from "./CharacterDisplay";
 
 const BookDisplay = () => {
   const bookCtx = useBookContext();
@@ -17,21 +18,23 @@ const BookDisplay = () => {
   }, [bookCtx.currBook]);
   return (
     <>
-      <div>
+      <div className="flex">
         {/*@ts-ignore */}
         <div>{dispBook?.userBook.title}</div>
         <button>edit</button>
       </div>
-      <div>
+      <div className="flex">
         {/*@ts-ignore */}
         <div>{dispBook?.userBook.setting}</div>
         <button>edit</button>
       </div>
-      <div>
+      <div className="flex">
         {/*@ts-ignore */}
         <div>{dispBook?.userBook.summary}</div>
         <button>edit</button>
       </div>
+      {/*@ts-ignore */}
+      <CharacterDisplay book={bookCtx.currBook}/>
     </>
   );
 };
