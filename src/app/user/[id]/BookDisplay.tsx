@@ -8,6 +8,10 @@ const BookDisplay = () => {
   const bookCtx = useBookContext();
   const [dispBook, setDispBook] = useState()
 
+  const handleDelete = () => {
+
+  }
+
   useEffect(() => {
     axios
       .get(`/api/book/${bookCtx.currBook}`)
@@ -35,6 +39,9 @@ const BookDisplay = () => {
       </div>
       {/*@ts-ignore */}
       <CharacterDisplay book={bookCtx.currBook}/>
+      <div>
+        <button onClick={handleDelete}>delete book</button>
+      </div>
     </>
   );
 };

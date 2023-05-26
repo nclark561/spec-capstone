@@ -84,3 +84,35 @@ export async function POST(request: NextRequest) {
     }
   );
 }
+
+export async function DELETE(request: NextRequest) {
+  const { searchParams } = new URL(request.url);
+  const id = searchParams.get("id");
+
+  let deleteUser
+
+  try {
+    deleteUser = await prisma.character.delete({
+      //@ts-ignore
+      where: { id: +id },
+    });
+    await prisma.$disconnect();
+  } catch (err) {
+    console.error(err);
+    await prisma.$disconnect();
+    process.exit(1);
+  }
+  if(deleteUser) {
+    return NextResponse.json({
+      message: 'character successfully deleted'
+    },
+    {
+      status: 200
+    })
+  }
+  return NextResponse.json({
+    message: 'character not deleted'
+  }, {
+    status: 400
+  })
+}

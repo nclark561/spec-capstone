@@ -28,13 +28,19 @@ const CharacterForm = (props: BookFormProp) => {
     axios
       .post(`/api/character?bookId=${props.book}`, body)
       .then((res) => {
-        console.log(res.data)
+        console.log(res.data);
         //@ts-ignore
-        props.setCharList(prev => [...prev, res.data.newChar])
+        props.setCharList((prev) => [...prev, res.data.newChar]);
       })
       .catch((err) => console.error(err));
 
-    props.setAdding(false)
+    props.setAdding(false);
+  };
+
+  const handleClick = (e: React.SyntheticEvent) => {
+    e.preventDefault();
+
+    props.setAdding(false);
   };
 
   return (
@@ -46,7 +52,10 @@ const CharacterForm = (props: BookFormProp) => {
       {/*@ts-ignore */}
       <textarea ref={description} placeholder="description of character"
       ></textarea>
-      <input type="submit"></input>
+      <div>
+        <input type="submit" className="cursor-pointer"></input>
+        <button onClick={handleClick}>cancel</button>
+      </div>
     </form>
   );
 };

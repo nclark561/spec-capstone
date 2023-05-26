@@ -17,3 +17,11 @@ type Book = {
   summary: string,
   userId: number
 }
+
+type Character = {
+  id: number,
+  name: string,
+  role: string,
+  description: string,
+  bookId: number
+}
