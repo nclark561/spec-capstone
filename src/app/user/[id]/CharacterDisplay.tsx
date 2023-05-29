@@ -12,10 +12,16 @@ export default function CharacterDisplay(props: CharProps) {
   const [charList, setCharList] = useState([]);
   const [adding, setAdding] = useState(false);
   const [deleting, setDeleting] = useState(false);
+  const [editing, setEditing] = useState(false);
   const [currChar, setCurrChar] = useState();
 
   const handleClick = () => {
     setAdding(true);
+  };
+
+  const handleEdit = (idx: number) => {
+    setEditing(true);
+    setCurrChar(charList[idx]);
   };
 
   const handleDelete = (id: any) => {
@@ -31,15 +37,15 @@ export default function CharacterDisplay(props: CharProps) {
         setCharList(res.data.charList);
       })
       .catch((err) => console.error(err));
-  }, [props.book, deleting]);
+  }, [props.book, deleting, editing]);
   return (
     <div className="flex flex-col">
       <h4>characters:</h4>
-      {charList.map((char: Character) => {
+      {charList.map((char: Character, idx) => {
         return (
           <div key={char.id}>
             <p key={char.id}>{char.name}</p>
-            <button>edit</button>
+            <button onClick={() => handleEdit(idx)}>edit</button>
             <button onClick={() => handleDelete(char.id)}>delete</button>
           </div>
         );
@@ -56,6 +62,7 @@ export default function CharacterDisplay(props: CharProps) {
       {deleting && (
         <Delete setDeleting={setDeleting} table="character" delId={currChar} />
       )}
+      {editing && <div>edit here</div>}
     </div>
   );
 }

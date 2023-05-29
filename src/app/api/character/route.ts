@@ -116,3 +116,10 @@ export async function DELETE(request: NextRequest) {
     status: 400
   })
 }
+
+export async function PUT(request: NextRequest){
+  const { searchParams } = new URL(request.url);
+  const id = searchParams.get("id");
+
+  
+}
