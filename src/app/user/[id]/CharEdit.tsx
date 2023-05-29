@@ -25,7 +25,7 @@ export default function CharEdit(props: CharEdit) {
     };
 
     axios
-      .put(`api/character?id=${props.char.id}`, body)
+      .put(`/api/character?id=${props.char.id}`, body)
       .then(({ data }) => {
         console.log(data)
       })
@@ -35,13 +35,13 @@ export default function CharEdit(props: CharEdit) {
   };
 
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       {/*@ts-ignore */}
-      <input ref={name} type="text" value={props.char.name} />
+      <input ref={name} type="text" defaultValue={props.char.name} />
       {/*@ts-ignore */}
-      <input ref={role} type="text" value={props.char.role} />
+      <input ref={role} type="text" defaultValue={props.char.role} />
       {/*@ts-ignore */}
-      <textarea ref={description} value={props.char.description}></textarea>
+      <textarea ref={description} defaultValue={props.char.description}></textarea>
       <input type="submit" value="update character" />
     </form>
   );

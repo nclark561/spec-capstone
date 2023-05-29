@@ -118,8 +118,38 @@ export async function DELETE(request: NextRequest) {
 }
 
 export async function PUT(request: NextRequest){
+  const { name, role, description } = await request.json();
   const { searchParams } = new URL(request.url);
   const id = searchParams.get("id");
 
-  
+  let updateChar
+
+  try {
+    updateChar = await prisma.character.update({
+      //@ts-ignore
+      where: {id: +id},
+      data: {
+        name: name,
+        role: role,
+        description: description
+      }
+    })
+    await prisma.$disconnect()
+  } catch (err) {
+    console.error(err)
+    await prisma.$disconnect()
+    process.exit(1)
+  }
+  if (updateChar) {
+    return NextResponse.json({
+      updateChar
+    },{
+      status:200
+    })
+  }
+  return NextResponse.json({
+    message: 'error updating character'
+  },{
+    status: 400
+  })
 }

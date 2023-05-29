@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import CharacterForm from "./CharacterForm";
 import Delete from "./Delete";
+import CharEdit from "./CharEdit";
 
 interface CharProps {
   book: number;
@@ -62,7 +63,10 @@ export default function CharacterDisplay(props: CharProps) {
       {deleting && (
         <Delete setDeleting={setDeleting} table="character" delId={currChar} />
       )}
-      {editing && <div>edit here</div>}
+      {editing && 
+      (
+        <CharEdit setEditing={setEditing} char={currChar}/>
+      )}
     </div>
   );
 }
