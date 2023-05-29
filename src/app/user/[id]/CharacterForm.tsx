@@ -20,9 +20,9 @@ const CharacterForm = (props: BookFormProp) => {
       //@ts-ignore
       name: name.current?.value,
       //@ts-ignore
-      role: name.current?.value,
+      role: role.current?.value,
       //@ts-ignore
-      description: name.current?.value,
+      description: description.current?.value,
     };
 
     axios

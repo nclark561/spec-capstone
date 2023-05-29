@@ -12,11 +12,17 @@ export default function CharacterDisplay(props: CharProps) {
   const [charList, setCharList] = useState([]);
   const [adding, setAdding] = useState(false);
   const [deleting, setDeleting] = useState(false);
+  const [editing, setEditing] = useState(false)
   const [currChar, setCurrChar] = useState();
 
   const handleClick = () => {
     setAdding(true);
   };
+
+  const handleEdit = (id: any) => {
+    setEditing(true)
+    setCurrChar(id)
+  }
 
   const handleDelete = (id: any) => {
     setDeleting(true);
@@ -39,7 +45,7 @@ export default function CharacterDisplay(props: CharProps) {
         return (
           <div key={char.id}>
             <p key={char.id}>{char.name}</p>
-            <button>edit</button>
+            <button onClick={() => handleEdit(char.id)}>edit</button>
             <button onClick={() => handleDelete(char.id)}>delete</button>
           </div>
         );
