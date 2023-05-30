@@ -91,3 +91,41 @@ export async function DELETE(request: NextRequest){
     status: 400
   })
 }
+
+export async function PUT(request: NextRequest){
+  const { title, summary, setting } = await request.json();
+  const { searchParams } = new URL(request.url);
+  const id = searchParams.get("id");
+
+  let updateBook
+
+  try {
+    updateBook = await prisma.book.update({
+      //@ts-ignore
+      where: {id: +id},
+      data: {
+        title: title,
+        setting: setting,
+        summary: summary
+      }
+    })
+    await prisma.$disconnect()
+  } catch (err) {
+    console.error(err)
+    await prisma.$disconnect()
+    process.exit(1)
+  }
+
+  if (updateBook) {
+    return NextResponse.json({
+      updateBook
+    },{
+      status: 200
+    })
+  }
+  return NextResponse.json({
+    message: 'error updating book'
+  },{
+    status: 400
+  })
+}
