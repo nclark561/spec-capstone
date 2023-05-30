@@ -63,7 +63,7 @@ export default function ChapterForm(props: ChapterProp) {
       {/*@ts-ignore */}
       <textarea ref={outline} defaultValue={props.editing ? props.chapter.outline : null}
       ></textarea>
-      <input type="submit" value={props.editing ? "update chapter" : "add chapter"} />
+      <input type="submit" className="cursor-pointer" value={props.editing ? "update chapter" : "add chapter"} />
       <button onClick={handleCancel}>cancel</button>
     </form>
   );

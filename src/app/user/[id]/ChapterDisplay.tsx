@@ -13,8 +13,9 @@ export default function ChapterDisplay() {
   const [currChap, setCurrChap] = useState()
   const bookCtx = useBookContext();
 
-  const handleEdit = () => {
+  const handleEdit = (index: number) => {
     setEditing(true);
+    setCurrChap(chapterList[index])
   };
 
   const handleDelete = (index: number) => {
@@ -45,7 +46,7 @@ export default function ChapterDisplay() {
             <h3>{chapter.name}</h3>
             <p>{chapter.outline}</p>
             <div className="flex">
-              <button onClick={handleEdit}>edit</button>
+              <button onClick={() => handleEdit(idx)}>edit</button>
               <button onClick={() => handleDelete(idx)}>delete</button>
             </div>
           </div>
@@ -53,6 +54,8 @@ export default function ChapterDisplay() {
       })}
       <button onClick={handleAdding}>add chapter</button>
       {adding && <ChapterForm setAdding={setAdding} setEditing={null} editing={editing} chapter={bookCtx.currBook}/>}
+      {/*@ts-ignore */}
+      {editing && <ChapterForm setAdding={null} setEditing={setEditing} editing={editing} chapter={currChap}/>}
       {/*@ts-ignore */}
       {deleting && <Delete setDeleting={setDeleting} delId={currChap.id} table="chapter"/>}
     </div>

@@ -81,7 +81,7 @@ export async function PUT(request: NextRequest){
     let updateChapter
 
     try {
-        updateChapter = await prisma.chapter.create({
+        updateChapter = await prisma.chapter.update({
             //@ts-ignore
             where: {id: +id},
             data: {
