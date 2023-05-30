@@ -12,6 +12,10 @@ export default function CharEdit(props: CharEdit) {
   const role = useRef();
   const description = useRef();
 
+  const handleCancel = () => {
+    props.setEditing(false)
+  }
+
   const handleSubmit = (evt: React.SyntheticEvent) => {
     evt.preventDefault();
 
@@ -42,7 +46,8 @@ export default function CharEdit(props: CharEdit) {
       <input ref={role} type="text" defaultValue={props.char.role} />
       {/*@ts-ignore */}
       <textarea ref={description} defaultValue={props.char.description}></textarea>
-      <input type="submit" value="update character" />
+      <input type="submit" value="update character" className="cursor-pointer"/>
+      <button onClick={handleCancel}>cancel</button>
     </form>
   );
 }
