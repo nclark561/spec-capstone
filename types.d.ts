@@ -25,3 +25,11 @@ type Character = {
   description: string,
   bookId: number
 }
+
+type Chapter = {
+  id: number,
+  num: number | null,
+  name: string | null,
+  outline: string,
+  bookId: number
+}
