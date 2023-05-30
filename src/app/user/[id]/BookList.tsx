@@ -26,7 +26,7 @@ const BookList = () => {
         setBook(res.data.userBook);
       })
       .catch((err) => console.error(err));
-  }, [bookCtx.bookList]);
+  }, [bookCtx.bookList, bookCtx.currBook]);
   return (
     <>
       {

@@ -5,6 +5,7 @@ interface DeleteProp {
   setDeleting: any;
   delId: any;
   table: string;
+  setCurrBook: any;
 }
 
 export default function Delete(props: DeleteProp) {
@@ -12,6 +13,10 @@ export default function Delete(props: DeleteProp) {
     props.setDeleting(false);
   };
   const handleDelete = () => {
+    if(props.table === 'book') {
+      props.setCurrBook(null)
+    }
+
     axios
       .delete(`/api/${props.table}?id=${props.delId}`)
       .then((res) => {

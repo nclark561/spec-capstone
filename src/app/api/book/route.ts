@@ -59,3 +59,35 @@ export async function POST(request: NextRequest) {
     }
   );
 }
+
+export async function DELETE(request: NextRequest){
+  const { searchParams } = new URL(request.url);
+  const id = searchParams.get("id");
+
+  let deleteBook
+
+  try {
+    deleteBook = await prisma.book.delete({
+      //@ts-ignore
+      where: {id: +id}
+    })
+    await prisma.$disconnect()
+  } catch (err) {
+    console.error(err)
+    await prisma.$disconnect()
+    process.exit(1)
+  }
+
+  if (deleteBook) {
+    return NextResponse.json({
+      message: 'book successfully deleted'
+    },{
+      status: 200
+    })
+  }
+  return NextResponse.json({
+    message: 'error deleting book'
+  },{
+    status: 400
+  })
+}

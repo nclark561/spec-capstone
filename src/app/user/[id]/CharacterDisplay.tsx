@@ -61,7 +61,7 @@ export default function CharacterDisplay(props: CharProps) {
         <button onClick={handleClick}>add character</button>
       )}
       {deleting && (
-        <Delete setDeleting={setDeleting} table="character" delId={currChar} />
+        <Delete setDeleting={setDeleting} table="character" delId={currChar} setCurrBook={null}/>
       )}
       {editing && 
       (
