@@ -45,11 +45,11 @@ export async function POST(request: NextRequest){
     try {
         newChapter = await prisma.chapter.create({
             data: {
-                num,
+                num: +num,
                 name,
                 outline,
                 //@ts-ignore
-                bookId
+                bookId: +bookId
             }
         })
         await prisma.$disconnect()
@@ -85,7 +85,7 @@ export async function PUT(request: NextRequest){
             //@ts-ignore
             where: {id: +id},
             data: {
-                num,
+                num: +num,
                 name,
                 outline,
             }

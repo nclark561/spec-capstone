@@ -6,6 +6,7 @@ import axios from "axios";
 import CharacterDisplay from "./CharacterDisplay";
 import Delete from "./Delete";
 import BookEdit from "./BookEdit";
+import ChapterDisplay from "./ChapterDisplay";
 
 const BookDisplay = () => {
   const bookCtx = useBookContext();
@@ -45,6 +46,7 @@ const BookDisplay = () => {
       </div>
       {/*@ts-ignore */}
       <CharacterDisplay book={bookCtx.currBook} />
+      <ChapterDisplay />
       <div>
         <button onClick={handleEdit}>edit book</button>
       </div>

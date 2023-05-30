@@ -44,7 +44,7 @@ export default function ChapterForm(props: ChapterProp) {
         .catch((err) => console.error(err));
     } else {
       axios
-        .post("/api/chapter", body)
+        .post(`/api/chapter?bookId=${props.chapter}`, body)
         .then(({ data }) => {
           console.log(data);
           props.setAdding(false);
@@ -54,7 +54,7 @@ export default function ChapterForm(props: ChapterProp) {
   };
 
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       {/*@ts-ignore */}
       <input ref={num} type="number" defaultValue={props.editing ? props.chapter.num : null}
       />
