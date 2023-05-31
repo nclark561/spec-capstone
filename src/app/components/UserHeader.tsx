@@ -12,9 +12,9 @@ export default function UserHeader() {
         router.push('/')
     }
     return (
-      <header className="bg-gray-800 text-white flex justify-end">
-        <h1>Narrative Nexus</h1>
-        <p onClick={handleClick} className="cursor-pointer">logout</p>
+      <header className="bg-gray-800 text-white flex justify-between h-[10vw] items-center">
+        <h1 className="m-[4vw]">Narrative Nexus</h1>
+        <p className="m-[5vw] cursor-pointer" onClick={handleClick} >logout</p>
       </header>
     );
   }

@@ -11,7 +11,9 @@ export default function LoginPage() {
   return (
     <main>
       <Header page='login'/>
-      <LoginForm/>
+      <div className='h-[74.2vh] img flex flex-col justify-center items-center' >
+        <LoginForm/>
+      </div>
     </main>
   )
 }

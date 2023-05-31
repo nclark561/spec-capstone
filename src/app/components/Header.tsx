@@ -6,14 +6,14 @@ interface HeaderProps {
 
 export default function Header(props: HeaderProps) {
   return (
-    <header className="bg-gray-800 text-white flex justify-end">
-      <h1>Narrative Nexus</h1>
+    <header className="bg-gray-800 text-white flex justify-between h-[5vw] items-center">
+      <h1 className="m-[4vw]">Narrative Nexus</h1>
       {props.page === "home" ? (
-        <p>
+        <p className="m-[5vw] anime">
           <Link href="/login">Login</Link>
         </p>
       ) : (
-        <p>
+        <p className="m-[5vw] anime">
           <Link href="/">Home</Link>
         </p>
       )}

@@ -1,6 +1,5 @@
 "use client";
 import { useState } from "react";
-import styles from "./LoginForm.module.css";
 import axios from "axios";
 import { useAuthContext } from "../context/store";
 import { useRouter } from "next/navigation";
@@ -36,21 +35,23 @@ export default function LoginForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className={styles.form}>
+    <form onSubmit={handleSubmit} className="rounded-md flex flex-col justify-center items-center bg-gray-800 p-2">
       <input
+        className="mt-2 bg-gray-800"
         type="text"
         placeholder="username"
         value={username}
         onChange={(e) => setUsername(e.target.value)}
       />
       <input
+        className="m-4 bg-gray-800"
         type="text"
         placeholder="password"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
       />
-      <button type="submit">{register ? "register" : "login"}</button>
-      <button onClick={handleClick}>
+      <button type="submit" className="bg-[#6347FF] text-white p-1 rounded-md w-[11vw]">{register ? "register" : "login"}</button>
+      <button onClick={handleClick} className="text-white m-2 anime">
         {register
           ? "already have an account? login here"
           : "don't have an account? register here"}
