@@ -37,15 +37,15 @@ export default function LoginForm() {
   return (
     <form onSubmit={handleSubmit} className="rounded-md flex flex-col justify-center items-center bg-gray-800 p-2">
       <input
-        className="mt-2 bg-gray-800"
+        className="mt-2 bg-gray-800 focus:outline-none text-white"
         type="text"
         placeholder="username"
         value={username}
         onChange={(e) => setUsername(e.target.value)}
       />
       <input
-        className="m-4 bg-gray-800"
-        type="text"
+        className="m-4 bg-gray-800 focus:outline-none text-white"
+        type="password"
         placeholder="password"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
