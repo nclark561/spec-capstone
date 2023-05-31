@@ -5,6 +5,7 @@
 body {
   background-color: #1f2937;
   font-family: Inter;
+  color: white;
 }
 
 :root {
@@ -53,4 +54,9 @@ body {
 .anime:hover::after {
   transform: scaleX(1);
   transform-origin: bottom center;
+}
+
+.anime2{
+  transition: background-color .5s ease;
+  transition: background-color .5s ease-out;
 }

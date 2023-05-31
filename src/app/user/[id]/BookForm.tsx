@@ -30,26 +30,29 @@ const BookForm = () => {
   return bookCtx.currBook ? (
     <BookDisplay />
   ) : (
-    <form onSubmit={handleSubmit} className="flex flex-col">
+    <form onSubmit={handleSubmit} className="rounded-md flex flex-col justify-center items-center bg-gray-800 p-2">
       <input
+        className="m-2 bg-gray-800 focus:outline-none text-white p-1 border-b"
         name="title"
         placeholder="title"
         value={title}
         onChange={(e) => setTitle(e.target.value)}
       ></input>
       <input
+        className="m-2 bg-gray-800 focus:outline-none text-white p-1 border-b"
         name="setting"
         placeholder="setting"
         value={setting}
         onChange={(e) => setSetting(e.target.value)}
       ></input>
       <textarea
+        className="m-4 bg-gray-800 focus:outline-none text-white border rounded p-1"
         name="summary"
         placeholder="summary"
         value={summary}
         onChange={(e) => setSummary(e.target.value)}
       ></textarea>
-      <input className="cursor-pointer" type="submit" value="add book"></input>
+      <input className="bg-[#6347FF] text-white p-1 rounded-md w-[11vw] cursor-pointer" type="submit" value="add book"></input>
     </form>
   );
 };

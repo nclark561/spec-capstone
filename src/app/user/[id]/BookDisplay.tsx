@@ -32,17 +32,14 @@ const BookDisplay = () => {
   }, [bookCtx.currBook, deleting, editing]);
   return (
     <>
-      <div className="flex">
+      <div className="rounded-md m-2 border flex flex-col justify-center items-center bg-gray-800 p-2 bg-opacity-50">
+        <h1 className="text-2xl">Overview</h1>
         {/*@ts-ignore */}
-        <div>{dispBook?.userBook.title}</div>
-      </div>
-      <div className="flex">
+        <p className="my-2">Title: {dispBook?.userBook.title}</p> 
         {/*@ts-ignore */}
-        <div>{dispBook?.userBook.setting}</div>
-      </div>
-      <div className="flex">
+        <p>Setting: {dispBook?.userBook.setting}</p>
         {/*@ts-ignore */}
-        <div>{dispBook?.userBook.summary}</div>
+        <p className="max-w-[25vw] text-center my-2">Summary: {dispBook?.userBook.summary}</p>
       </div>
       {/*@ts-ignore */}
       <CharacterDisplay book={bookCtx.currBook} />

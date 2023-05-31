@@ -9,10 +9,10 @@ export default function page({ params: { id } }: Params) {
     <main>
         <UserHeader />
         <div className="flex">
-          <section className="flex flex-col">
+          <section className="flex flex-col gap-3">
             <BookList/>
           </section>
-          <section>
+          <section className='min-h-[74.2vh] w-full img flex flex-col justify-center items-center'>
             <BookForm/> 
           </section>
         </div>
