@@ -13,6 +13,7 @@ const BookDisplay = () => {
   const [dispBook, setDispBook] = useState();
   const [deleting, setDeleting] = useState(false);
   const [editing, setEditing] = useState(false)
+  const [display, setDisplay] = useState('')
 
   const handleDelete = () => {
     setDeleting(true);
@@ -40,19 +41,21 @@ const BookDisplay = () => {
         <p>Setting: {dispBook?.userBook.setting}</p>
         {/*@ts-ignore */}
         <p className="max-w-[25vw] text-center my-2">Summary: {dispBook?.userBook.summary}</p>
+        <button onClick={handleEdit} className="bg-[#6347FF] hover:bg-[#401FFF] anime2 text-white p-1 rounded-md px-2 cursor-pointer">edit book</button>
       </div>
       {/*@ts-ignore */}
-      <CharacterDisplay book={bookCtx.currBook} />
-      <ChapterDisplay />
-      <div>
-        <button onClick={handleEdit}>edit book</button>
+      {display === 'character' && <CharacterDisplay book={bookCtx.currBook} />}
+      {display === 'chapter' && <ChapterDisplay />}
+      <div className="flex gap-5">
+        <button onClick={() => setDisplay('character')} className="bg-[#6347FF] hover:bg-[#401FFF] anime2 text-white p-1 rounded-md px-2 cursor-pointer">Display Characters</button>
+        <button onClick={() => setDisplay('chapter')} className="bg-[#6347FF] hover:bg-[#401FFF] anime2 text-white p-1 rounded-md px-2 cursor-pointer">Display Chapters</button>
       </div>
       {editing && (
         //@ts-ignore
         <BookEdit setEditing={setEditing} book={dispBook.userBook}/>
       )}
       <div>
-        <button onClick={handleDelete}>delete book</button>
+        <button onClick={handleDelete} className="bg-[#6347FF] hover:bg-[#401FFF] m-2 anime2 text-white p-1 rounded-md px-2 cursor-pointer">delete book</button>
       </div>
       {deleting && (
         <Delete
