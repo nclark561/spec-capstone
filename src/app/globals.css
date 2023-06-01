@@ -60,3 +60,11 @@ body {
   transition: background-color .5s ease;
   transition: background-color .5s ease-out;
 }
+
+.popup {
+  position: fixed;
+  display: flex;
+  width: fit-content;
+  justify-content: center;
+  align-items: center;
+}
