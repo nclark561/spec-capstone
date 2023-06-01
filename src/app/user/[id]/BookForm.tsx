@@ -52,7 +52,7 @@ const BookForm = () => {
         value={summary}
         onChange={(e) => setSummary(e.target.value)}
       ></textarea>
-      <input className="bg-[#6347FF] text-white p-1 rounded-md w-[11vw] cursor-pointer" type="submit" value="add book"></input>
+      <input className="bg-[#6347FF] hover:bg-[#401FFF] anime2 text-white p-1 rounded-md w-[11vw] cursor-pointer" type="submit" value="add book"></input>
     </form>
   );
 };

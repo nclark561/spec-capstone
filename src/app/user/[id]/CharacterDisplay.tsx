@@ -45,11 +45,13 @@ export default function CharacterDisplay(props: CharProps) {
       <div className="flex justify-center items-center">
         {charList.map((char: Character, idx) => {
           return (
-            <div key={char.id} className="rounded-md m-2 border flex flex-col justify-center items-center bg-gray-800 bg-opacity-75 p-2">
-              <p key={char.id}>{char.name}</p>
+            <div key={char.id} className="rounded-md m-2 gap-2 border flex flex-col justify-center items-center bg-gray-800 bg-opacity-75 p-2">
+              <p className="text-xl">{char.name}</p>
+              <p className="font-light">{char.role}</p>
+              <p className="text-center font-light">{char.description}</p>
               <div className="flex gap-2">
-                <button onClick={() => handleEdit(idx)} className="bg-[#6347FF] text-white p-1 rounded-md px-2 w-[5vw] cursor-pointer">edit</button>
-                <button onClick={() => handleDelete(char.id)} className="bg-[#6347FF] text-white p-1 rounded-md px-2 cursor-pointer">delete</button>
+                <button onClick={() => handleEdit(idx)} className="bg-[#6347FF] hover:bg-[#401FFF] anime2 text-white p-1 rounded-md px-2 w-[5vw] cursor-pointer">edit</button>
+                <button onClick={() => handleDelete(char.id)} className="bg-[#6347FF] hover:bg-[#401FFF] anime2 text-white p-1 rounded-md px-2 cursor-pointer">delete</button>
               </div>
             </div>
           );
@@ -62,7 +64,7 @@ export default function CharacterDisplay(props: CharProps) {
           setCharList={setCharList}
         />
       ) : (
-        <button onClick={handleClick} className="bg-[#6347FF] text-white p-1 border rounded-md w-[11vw] cursor-pointer">add character</button>
+        <button onClick={handleClick} className="bg-[#6347FF] text-white p-1 hover:bg-[#401FFF] anime2 rounded-md w-[11vw] cursor-pointer">add character</button>
       )}
       {deleting && (
         <Delete

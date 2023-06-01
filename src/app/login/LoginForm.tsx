@@ -50,7 +50,7 @@ export default function LoginForm() {
         value={password}
         onChange={(e) => setPassword(e.target.value)}
       />
-      <button type="submit" className="bg-[#6347FF] text-white p-1 rounded-md w-[11vw]">{register ? "register" : "login"}</button>
+      <button type="submit" className="bg-[#6347FF] hover:bg-[#401FFF] anime2 text-white p-1 rounded-md w-[11vw]">{register ? "register" : "login"}</button>
       <button onClick={handleClick} className="text-white m-2 anime">
         {register
           ? "already have an account? login here"

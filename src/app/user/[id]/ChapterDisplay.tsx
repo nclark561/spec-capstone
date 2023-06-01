@@ -37,22 +37,22 @@ export default function ChapterDisplay() {
   }, [bookCtx.currBook, adding, editing, deleting]);
 
   return (
-    <div className="flex flex-col">
-      <h3>Chapters:</h3>
+    <div className="rounded-md m-2 border flex flex-col justify-center items-center bg-gray-800 p-2 bg-opacity-50">
+      <h3 className="text-2xl">Chapters</h3>
       {chapterList.map((chapter: Chapter, idx) => {
         return (
-          <div className="flex flex-col" key={chapter.id}>
-            <h3>Chapter {chapter.num}</h3>
-            <h3>{chapter.name}</h3>
-            <p>{chapter.outline}</p>
-            <div className="flex">
-              <button onClick={() => handleEdit(idx)}>edit</button>
-              <button onClick={() => handleDelete(idx)}>delete</button>
+          <div className="rounded-md m-2 gap-2 border flex flex-col justify-center items-center bg-gray-800 bg-opacity-75 p-2" key={chapter.id}>
+            <p className="text-xl">Chapter {chapter.num}</p>
+            <p className="font-light">{chapter.name}</p>
+            <p className="text-center font-light">{chapter.outline}</p>
+            <div className="flex gap-2">
+              <button onClick={() => handleEdit(idx)} className="bg-[#6347FF] hover:bg-[#401FFF] anime2 text-white p-1 rounded-md px-2 w-[5vw] cursor-pointer">edit</button>
+              <button onClick={() => handleDelete(idx)} className="bg-[#6347FF] hover:bg-[#401FFF] anime2 text-white p-1 rounded-md px-2 w-[5vw] cursor-pointer">delete</button>
             </div>
           </div>
         );
       })}
-      <button onClick={handleAdding}>add chapter</button>
+      <button onClick={handleAdding} className="bg-[#6347FF] hover:bg-[#401FFF] anime2 text-white p-1 rounded-md px-2 cursor-pointer">add chapter</button>
       {adding && <ChapterForm setAdding={setAdding} setEditing={null} editing={editing} chapter={bookCtx.currBook}/>}
       {/*@ts-ignore */}
       {editing && <ChapterForm setAdding={null} setEditing={setEditing} editing={editing} chapter={currChap}/>}
