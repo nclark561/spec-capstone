@@ -39,15 +39,19 @@ export default function BookEdit(props: BookEdit) {
       .catch((err) => console.error(err));
   };
   return (
-    <form onSubmit={handleSubmit}>
-      {/*@ts-ignore */}
-      <input ref={title} type="text" defaultValue={props.book.title} />
-      {/*@ts-ignore */}
-      <input ref={setting} type="text" defaultValue={props.book.setting} />
-      {/*@ts-ignore */}
-      <textarea ref={summary} defaultValue={props.book.summary}></textarea>
-      <input type="submit" value="update book" className="cursor-pointer" />
-      <button onClick={handleCancel}>cancel</button>
-    </form>
+    <div className="popup flex justify-center items-center">
+      <form onSubmit={handleSubmit} className="rounded-md modal border flex flex-col justify-center items-center bg-gray-800 p-4">
+        {/*@ts-ignore */}
+        <input className="m-4 bg-gray-800 focus:outline-none text-white border-b" ref={title} type="text" defaultValue={props.book.title} />
+        {/*@ts-ignore */}
+        <input className="m-4 bg-gray-800 focus:outline-none text-white border-b" ref={setting} type="text" defaultValue={props.book.setting} />
+        {/*@ts-ignore */}
+        <textarea className="m-4 bg-gray-800 focus:outline-none text-white border rounded p-1" ref={summary} defaultValue={props.book.summary}></textarea>
+        <div className="flex gap-2">
+          <input className="bg-[#6347FF] hover:bg-[#401FFF] anime2 text-white p-1 rounded-md w-[11vw] cursor-pointer" type="submit" value="update book"/>
+          <button className="bg-[#6347FF] hover:bg-[#401FFF] anime2 text-white p-1 rounded-md w-[11vw] cursor-pointer" onClick={handleCancel}>cancel</button>
+        </div>
+      </form>
+    </div>
   );
 }

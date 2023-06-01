@@ -44,19 +44,21 @@ const CharacterForm = (props: BookFormProp) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      {/*@ts-ignore */}
-      <input ref={name} type="text" placeholder="character name"></input>
-      {/*@ts-ignore */}
-      <input ref={role} type="text" placeholder="role of character"></input>
-      {/*@ts-ignore */}
-      <textarea ref={description} placeholder="description of character"
-      ></textarea>
-      <div>
-        <input type="submit" className="cursor-pointer"></input>
-        <button onClick={handleClick}>cancel</button>
-      </div>
-    </form>
+    <div className="popup flex justify-center items-center">
+      <form onSubmit={handleSubmit} className="rounded-md modal border flex flex-col justify-center items-center bg-gray-800 p-4">
+        {/*@ts-ignore */}
+        <input className="m-4 bg-gray-800 focus:outline-none text-white border-b" ref={name} type="text" placeholder="character name"></input>
+        {/*@ts-ignore */}
+        <input className="m-4 bg-gray-800 focus:outline-none text-white border-b" ref={role} type="text" placeholder="role of character"></input>
+        {/*@ts-ignore */}
+        <textarea className="m-4 bg-gray-800 focus:outline-none text-white border rounded p-1" ref={description} placeholder="description of character"
+        ></textarea>
+        <div className="flex gap-2">
+          <input className="bg-[#6347FF] hover:bg-[#401FFF] anime2 text-white p-1 rounded-md w-[11vw] cursor-pointer" type="submit"></input>
+          <button className="bg-[#6347FF] hover:bg-[#401FFF] anime2 text-white p-1 rounded-md w-[11vw] cursor-pointer" onClick={handleClick}>cancel</button>
+        </div>
+      </form>
+    </div>
   );
 };
 

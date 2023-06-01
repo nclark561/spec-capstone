@@ -54,17 +54,21 @@ export default function ChapterForm(props: ChapterProp) {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      {/*@ts-ignore */}
-      <input ref={num} type="number" defaultValue={props.editing ? props.chapter.num : null}
-      />
-      {/*@ts-ignore */}
-      <input ref={name} defaultValue={props.editing ? props.chapter.name : null} />
-      {/*@ts-ignore */}
-      <textarea ref={outline} defaultValue={props.editing ? props.chapter.outline : null}
-      ></textarea>
-      <input type="submit" className="cursor-pointer" value={props.editing ? "update chapter" : "add chapter"} />
-      <button onClick={handleCancel}>cancel</button>
-    </form>
+    <div className="popup flex justify-center items-center">
+      <form onSubmit={handleSubmit} className="rounded-md modal border flex flex-col justify-center items-center bg-gray-800 p-4">
+        {/*@ts-ignore */}
+        <input className="m-4 bg-gray-800 focus:outline-none text-white border-b" placeholder="number" ref={num} type="number" defaultValue={props.editing ? props.chapter.num : null}
+        />
+        {/*@ts-ignore */}
+        <input className="m-4 bg-gray-800 focus:outline-none text-white border-b" placeholder="chapter name" ref={name} defaultValue={props.editing ? props.chapter.name : null} />
+        {/*@ts-ignore */}
+        <textarea className="m-4 bg-gray-800 focus:outline-none text-white border rounded p-1" placeholder="outline" ref={outline} defaultValue={props.editing ? props.chapter.outline : null}
+        ></textarea>
+        <div className="flex gap-2">
+          <input type="submit" className="bg-[#6347FF] hover:bg-[#401FFF] anime2 text-white p-1 rounded-md w-[11vw] cursor-pointer" value={props.editing ? "update chapter" : "add chapter"} />
+          <button onClick={handleCancel} className="bg-[#6347FF] hover:bg-[#401FFF] anime2 text-white p-1 rounded-md w-[11vw] cursor-pointer">cancel</button>
+        </div>
+      </form>
+    </div>
   );
 }
