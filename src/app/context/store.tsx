@@ -1,4 +1,5 @@
 "use client";
+import isBrowser from "is-in-browser";
 
 import {
   createContext,
@@ -22,14 +23,14 @@ const calculateRemainingTime = (exp) => {
 };
 
 const getLocalData = () => {
-  const storedToken = localStorage.getItem("token");
-  const storedExp = localStorage.getItem("exp");
+  const storedToken = isBrowser ? localStorage.getItem("token") : '';
+  const storedExp = isBrowser ? localStorage.getItem("exp") : '';
 
   const remaingingTime = calculateRemainingTime(storedExp);
 
   if (remaingingTime <= 1000 * 60 * 30) {
-    localStorage.removeItem("token");
-    localStorage.removeItem("exp");
+    isBrowser && localStorage.removeItem("token");
+    isBrowser && localStorage.removeItem("exp");
     return null;
   }
 
@@ -55,7 +56,7 @@ export const AuthContextProvider = ({ children }) => {
     setToken(null);
     setUserId(null);
 
-    localStorage.clear();
+    isBrowser && localStorage.clear();
 
     if (logoutTimer) {
       clearTimeout(logoutTimer);
@@ -66,9 +67,9 @@ export const AuthContextProvider = ({ children }) => {
     setToken(tkn);
     setUserId(useId);
 
-    localStorage.setItem("token", tkn);
-    localStorage.setItem("userId", useId);
-    localStorage.setItem("exp", expTime);
+    isBrowser && localStorage.setItem("token", tkn);
+    isBrowser && localStorage.setItem("userId", useId);
+    isBrowser && localStorage.setItem("exp", expTime);
 
     const remainingTime = calculateRemainingTime(expTime)
 
