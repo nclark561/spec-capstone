@@ -4,7 +4,7 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+  url      = "postgres://pig:MnHJW78p0vADyA28S8h8nn3fQpou5kzf@dpg-chscnve7avjdbigq69rg-a.oregon-postgres.render.com/narrative_nexus"
 }
 
 model Book {
