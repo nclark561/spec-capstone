@@ -7,11 +7,12 @@ import CharacterDisplay from "./CharacterDisplay";
 import Delete from "./Delete";
 import BookEdit from "./BookEdit";
 import ChapterDisplay from "./ChapterDisplay";
+import { Book } from "@prisma/client";
 
 const BookDisplay = () => {
   const bookCtx = useBookContext();
-  const [dispBook, setDispBook] = useState();
-  const [deleting, setDeleting] = useState(false);
+  const [dispBook, setDispBook] = useState<Book>();
+  const [deleting, setDeleting] = useState<boolean>(false);
   const [editing, setEditing] = useState(false)
   const [display, setDisplay] = useState('')
 
@@ -27,20 +28,18 @@ const BookDisplay = () => {
     axios
       .get(`/api/book/${bookCtx.currBook}`)
       .then((res) => {
-        setDispBook(res.data);
+        setDispBook(res.data.userBook);
       })
       .catch((err) => console.error(err));
   }, [bookCtx.currBook, deleting, editing]);
+  if(!dispBook) return null
   return (
     <>
       <div className="rounded-md m-2 border flex flex-col justify-center items-center bg-gray-800 p-2 bg-opacity-50">
         <h1 className="text-2xl">Overview</h1>
-        {/*@ts-ignore */}
-        <p className="my-2">Title: {dispBook?.userBook.title}</p> 
-        {/*@ts-ignore */}
-        <p>Setting: {dispBook?.userBook.setting}</p>
-        {/*@ts-ignore */}
-        <p className="max-w-[25vw] text-center my-2">Summary: {dispBook?.userBook.summary}</p>
+        <p className="my-2">Title: {dispBook.title}</p> 
+        <p>Setting: {dispBook.setting}</p>
+        <p className="max-w-[25vw] text-center my-2">Summary: {dispBook.summary}</p>
         <button onClick={handleEdit} className="bg-[#6347FF] hover:bg-[#401FFF] anime2 text-white p-1 rounded-md px-2 cursor-pointer">edit book</button>
       </div>
       {/*@ts-ignore */}

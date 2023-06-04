@@ -5,14 +5,14 @@ const prisma = new PrismaClient();
 
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
-  const bookId = searchParams.get("bookId");
+  const bookIdString = searchParams.get("bookId");
+  const bookId = Number(bookIdString)
 
   let charList;
 
   try {
     charList = await prisma.character.findMany({
-      //@ts-ignore
-      where: { bookId: +bookId },
+      where: { bookId },
     });
     await prisma.$disconnect();
   } catch (err) {
