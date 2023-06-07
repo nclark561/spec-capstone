@@ -16,6 +16,7 @@
     "autoprefixer": "10.4.14",
     "axios": "^1.4.0",
     "bcryptjs": "^2.4.3",
+    "dotenv": "^16.1.4",
     "eslint": "8.39.0",
     "eslint-config-next": "13.3.4",
     "is-in-browser": "^2.0.0",
